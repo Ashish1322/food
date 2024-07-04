@@ -43,12 +43,13 @@ To get started with the Food Delivery App, follow these steps:
     
     npm create vite@latest
     
-    write the project name
+
+write the project name
 
     
 3.  Navigate to the project directory:
     ```bash
-    cd food-delivery
+    cd ./food-delivery
 
 3. ***Install the dependencies:***
     ```bash
