@@ -1,9 +1,37 @@
+import { useState } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
   const navigate = useNavigate();
+
+  function handleChange(e) {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      const loggedInUser = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      if (loggedInUser) navigate("/");
+     
+    } catch (error) {
+      alert('firstly you sign in' );
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -27,12 +55,15 @@ function Login() {
       <div className="py-6">
         <div className="p-8 bg-white lg:w-[25rem] rounded-xl ">
           <h2 className="text-3xl font-bold">Login</h2>
-          <form action="" className="pt-4">
+          <form action="" className="pt-4" onSubmit={handleSubmit}>
             <p className="pb-2">
               <label htmlFor="">Email:</label>
               <br />
               <input
                 type="email"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
                 className="border-2 mt-1 w-[100%] py-2 px-2"
               />
             </p>
@@ -41,6 +72,9 @@ function Login() {
               <br />
               <input
                 type="password"
+                name="password"
+                value={data.password}
+                onChange={handleChange}
                 className="border-2 mt-1 w-[100%] py-2 px-2"
               />
             </p>

@@ -1,9 +1,32 @@
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firebase";
 
 function Signup() {
   const navigate = useNavigate();
+
+  const [data, setData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  function handleChange(e) {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const userCredentials = await createUserWithEmailAndPassword(
+      auth,
+      data.email,
+      data.password
+    );
+    await updateProfile(userCredentials.user, { displayName: data.username });
+    console.log(userCredentials);
+  }
 
   return (
     <motion.div
@@ -26,19 +49,28 @@ function Signup() {
         />
       </div>
       <div className="py-6">
-        <div  className="p-8 bg-white lg:w-[25rem] rounded-xl ">
+        <div className="p-8 bg-white lg:w-[25rem] rounded-xl ">
           <h2 className="text-3xl font-bold">Register</h2>
-          <form action="" className="pt-2">
+          <form action="" className="pt-2" onSubmit={handleSubmit}>
             <p className="pb-2">
               <label htmlFor="">Name:</label>
               <br />
-              <input type="text" className="border-2 mt-1 w-[100%] py-2 px-2" />
+              <input
+                type="text"
+                name="username"
+                value={data.name}
+                onChange={handleChange}
+                className="border-2 mt-1 w-[100%] py-2 px-2"
+              />
             </p>
             <p className="pb-2">
               <label htmlFor="">Email:</label>
               <br />
               <input
                 type="email"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
                 className="border-2 mt-1 w-[100%] py-2 px-2"
               />
             </p>
@@ -47,6 +79,9 @@ function Signup() {
               <br />
               <input
                 type="password"
+                name="password"
+                value={data.password}
+                onChange={handleChange}
                 className="border-2 mt-1 w-[100%] py-2 px-2"
               />
             </p>

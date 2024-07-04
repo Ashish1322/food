@@ -1,17 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { food_Delivery_contex } from "../App";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 function Payment() {
   const { total } = useContext(food_Delivery_contex);
   const navigate = useNavigate();
 
-  function handlePayment() {
-    navigate("/");
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    buldingName: "",
+    pinCode: "",
+    mobileNo: "",
+    landmark: "",
+  });
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+  function handlePayment(e) {
+    e.preventDefault();
+    
+  }  
+  
+
 
   return (
     <>
@@ -40,7 +55,11 @@ function Payment() {
               </div>
 
               <div className="grow">
-                <form action="" method="post">
+                <form
+                  action=""
+                  method="post"
+                  onSubmit={handlePayment}
+                >
                   <h3 className="mb-4 text-xl text-white font-semibold md:pt-0 pt-10">
                     Enter Your Page
                   </h3>
@@ -48,54 +67,72 @@ function Payment() {
                     <input
                       type="text"
                       placeholder="Name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       className="border mb-2 py-1 lg:py-2 px-2 rounded w-[8rem] xl:w-[18rem] grow"
                     />
                     <input
                       type="text"
                       placeholder="Enter Address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
                       className="border mb-2 py-1 lg:py-2 px-2 rounded w-[8rem] xl:w-[18rem] grow"
                     />
                   </p>
                   <input
                     type="text"
+                    name="buldingName"
+                    value={formData.buldingName}
+                    onChange={handleChange}
                     placeholder="Enter Building NO. and Street Name (optional)"
                     className="border mb-2 py-1 lg:py-2 px-2 rounded w-full"
                   />
                   <p className="flex gap-1 lg:gap-4">
                     <input
                       type="number"
+                      name="pinCode"
+                      value={formData.pinCode}
+                      onChange={handleChange}
                       placeholder="Enter Pincode"
                       className="border mb-2 py-1 lg:py-2 px-2 rounded w-[8rem] xl:w-[18rem] grow"
                     />
                     <input
                       type="number"
+                      name="mobileNo"
+                      value={formData.mobileNo}
+                      onChange={handleChange}
                       placeholder="Enter Mobile Number"
                       className="border mb-2 py-1 lg:py-2 px-2 rounded w-[8rem] xl:w-[18rem] grow"
                     />
                   </p>
                   <input
                     type="text"
+                    name="landmark"
+                    value={formData.landmark}
+                    onChange={handleChange}
                     placeholder="Enter Landmark (optional)"
                     className="border mb-2 py-1 lg:py-2  px-2 rounded w-full"
                   />
+                  <div className="md:flex justify-between items-center lg:px-36 md:px-20 md:pb-12">
+                    <p className="flex items-center px-6 md:px-0 text-white font-semibold text-xl">
+                      <span className="pr-2 ">Net Amount:</span>
+                      <FaIndianRupeeSign className="text-md" />
+                      <span>{total}</span>
+                    </p>
+                    <p className="text-center py-6">
+                      <button
+                        className="bg-blue-600 text-white py-2 px-10 rounded-lg hover:bg-blue-400 duration-200 hover:scale-105"
+                        type="submit"
+                      >
+                        Pay
+                      </button>
+                    </p>
+                  </div>
                 </form>
               </div>
             </div>
-          </div>
-          <div className="md:flex justify-between items-center lg:px-36 md:px-20 md:pb-12">
-            <p className="flex items-center px-6 md:px-0 text-white font-semibold text-xl">
-              <span className="pr-2 ">Net Amount:</span>
-              <FaIndianRupeeSign className="text-md" />
-              <span>{total}</span>
-            </p>
-            <p className="text-center py-6">
-              <button
-                className="bg-blue-600 text-white py-2 px-10 rounded-lg hover:bg-blue-400 duration-200 hover:scale-105"
-                onClick={handlePayment}
-              >
-                Pay
-              </button>
-            </p>
           </div>
         </motion.div>
       </div>
