@@ -5,27 +5,28 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
+import { motion } from "framer-motion";
 
 function Carts() {
   const { cart, setCart, total } = useContext(food_Delivery_contex);
- 
+
   const initialCart = [];
   const navigate = useNavigate();
 
   function removeFromCart(e, index) {
-    const newCart = cart.filter((item)=>{
+    const newCart = cart.filter((item) => {
       return item._id !== index;
-    })
-    setCart(newCart)
-    localStorage.setItem('cart',JSON.stringify(newCart))
+    });
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   }
   console.log(cart);
 
   function ResetCart() {
     setCart(initialCart);
-    localStorage.setItem('cart',JSON.stringify(initialCart))
+    localStorage.setItem("cart", JSON.stringify(initialCart));
   }
- 
+
   useEffect(() => {
     if (cart.length > 0) localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -39,14 +40,17 @@ function Carts() {
     <div className="pt-6 pb-20">
       {cart.length > 0 ? (
         <>
-          <div className="bg-orange-700 rounded-lg md:w-[40rem] w-[18rem] mx-auto text-center md:px-6 px-3 md:py-8 py-3">
+          <div className="bg-red-500 rounded-lg md:w-[40rem] w-[18rem] mx-auto text-center md:px-6 px-3 md:py-8 py-3">
             {cart.map((cartItem) => {
               return (
-                <div
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 2 }}
                   className="my-6 px-2 py-2 bg-white rounded-md relative"
                   key={cartItem._id}
                 >
-                  <div className=" flex items-center">
+                  <div className=" flex items-center md:py-4 md:px-6">
                     <div>
                       <img
                         src={cartItem.image}
@@ -54,7 +58,7 @@ function Carts() {
                         className="md:w-[10rem] w-[6rem] rounded-[100%]"
                       />
                     </div>
-                    <div className="text-start font-[600] ml-4">
+                    <div className="text-start font-[600] md:ml-10 ml-6">
                       <p className="font-semibold md:text-xl text-base pb-2">
                         {cartItem.name}
                       </p>
@@ -78,10 +82,15 @@ function Carts() {
                       }}
                     />
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-            <div className="md:flex justify-evenly block md:text-start">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              className="md:flex justify-evenly block md:text-start"
+            >
               <p className="">
                 <p className="text-white font-bold text-xl mb-2">
                   Note To Chief:
@@ -108,17 +117,22 @@ function Carts() {
                   placeholder="Any special instructions for the delivery team? "
                 ></textarea>
               </p>
-            </div>
-            <div className="flex items-center bg-white px-6 py-2 rounded-md mt-2">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              className="flex items-center bg-white px-6 py-2 rounded-md mt-2"
+            >
               <img src="download.gif" alt="" />
               <h2 className="text-2xl font-bold flex">
                 <span>Total:</span>
                 <span className=" flex items-center pl-2">
-                  <FaIndianRupeeSign/>
+                  <FaIndianRupeeSign />
                   <span>{total}</span>
                 </span>
               </h2>
-            </div>
+            </motion.div>
           </div>
           <div className="flex justify-evenly md:mt-12 mt-4">
             <button
@@ -127,14 +141,21 @@ function Carts() {
             >
               Reset
             </button>
-            <button className="bg-red-500 text-white text-xl px-2 rounded-md" onClick={()=>navigate('/payment')}>
+            <button
+              className="bg-red-500 text-white text-xl px-2 rounded-md"
+              onClick={() => navigate("/payment")}
+            >
               Proceed To Payment
             </button>
           </div>
         </>
       ) : (
-        <div>
-          <div className="bg-orange-700 rounded-lg md:w-[25rem] w-[18rem] mx-auto text-center px-6 py-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+        >
+          <div className="bg-red-500 rounded-lg md:w-[25rem] w-[18rem] mx-auto text-center px-6 py-8">
             <h3 className="text-2xl font-semibold text-white pb-6">
               Your Cart Is Empty
             </h3>
@@ -150,7 +171,7 @@ function Carts() {
               GO To Home
             </button>
           </p>
-        </div>
+        </motion.div>
       )}
       ;
     </div>
