@@ -1,12 +1,7 @@
-
 # Food Delivery
-
 Welcome to the Food Delivery App! 
 
 This application is built using React and provides a user-friendly interface for ordering food online.
-
-
-
 ## Features
 - Browse a wide variety of food items.
 - Search for specific food items.
@@ -32,11 +27,9 @@ The app uses React's Context API for state management. The following contexts ar
 - AuthContext: Manages user authentication state.
 - CartContext: Manages the state of the shopping cart.
 ## technology used 
-
 - React
 - TailwindCSS
 ## Installation
-
 To get started with the Food Delivery App, follow these steps:
 
 1. Firstly node is install in our system
@@ -74,10 +67,34 @@ This will run the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
 
 The page will reload if you make edits.
-You will also see any lint errors in the console.## Acknowledgements
+You will also see any lint errors in the console.
+## Screenshots
+- **Header**
+  ![1](https://github.com/kumardee78/food-delivery/assets/159279737/f77738b4-2bcf-4302-9744-42e043ce0336)
+- **Food-items**
+  ![2](https://github.com/kumardee78/food-delivery/assets/159279737/6f738eca-7965-471b-8d6b-a8d7e05b2077)
+- **Review**
 
+      if no review is added
+  ![review-1](https://github.com/kumardee78/food-delivery/assets/159279737/3b6634e2-6a20-472b-a740-fa4f67bc7ea9)
+      when review added
+  ![view-2](https://github.com/kumardee78/food-delivery/assets/159279737/9db84fe0-0a36-4573-88aa-1dcf45bf023f)
+- **Cart**
+   if cart is empty
+  ![car-12](https://github.com/kumardee78/food-delivery/assets/159279737/be9d103e-0cf3-443b-bb15-833900929151)
+    when cart have items
+  ![cart-1](https://github.com/kumardee78/food-delivery/assets/159279737/7cfe7fc9-2eeb-4733-85d3-7def2fcd7086)
+- **Payment**
+    ![payment](https://github.com/kumardee78/food-delivery/assets/159279737/06148f65-bd32-4107-b5c2-584fd1482cd9)
+- **Signup**
+    ![signup](https://github.com/kumardee78/food-delivery/assets/159279737/b7bc457a-f038-4065-ba65-43366d1b2283)
+-**Login**
+    ![login](https://github.com/kumardee78/food-delivery/assets/159279737/d95cb5e7-ae7c-4752-9c1a-8d3eb72b25f7)
+- **Footer**
+    ![footer](https://github.com/kumardee78/food-delivery/assets/159279737/6fc72fa8-5065-4f07-811b-d9d188040a29)
+
+## Acknowledgements
 We would like to extend our sincere gratitude to the following individuals and organizations who have contributed to the development of the Food Delivery App:
-
 
 - **[Open Source Libraries and Tools]** - For providing the powerful libraries and tools that made this project possible:
   - [React](https://reactjs.org/)
