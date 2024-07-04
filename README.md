@@ -36,7 +36,7 @@ To get started with the Food Delivery App, follow these steps:
     
     Clone the repository:
    ```bash
-   git clone https://github.com/your-username/food-delivery-app.git
+   git clone https://github.com/kumardee78/food-delivery.git
 
 2.  Go to code-Editor like vsCode
     ```bash
@@ -49,14 +49,15 @@ To get started with the Food Delivery App, follow these steps:
     
 3.  Navigate to the project directory:
     ```bash
-    cd food-delivery-app
+    cd food-delivery
 
 3. ***Install the dependencies:***
     ```bash
     npm install
-    npm react-router-dom
-    npm axios
-    npm react-icons
+    npm install react-router-dom
+    npm install axios
+    npm install react-icons
+    npm install firebase
 
 ## Usage
 To start the application, run the command:
@@ -64,7 +65,7 @@ To start the application, run the command:
 npm run dev
 
 This will run the app in the development mode.
-Open http://localhost:3000 to view it in the browser.
+Open http://localhost:5173 to view it in the browser.
 
 The page will reload if you make edits.
 You will also see any lint errors in the console.
