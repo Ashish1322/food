@@ -5,7 +5,6 @@ This application is built using React and provides a user-friendly interface for
 ## Features
 - Browse a wide variety of food items.
 - Search for specific food items.
-- View detailed information about each food item.
 - Add food items to the cart.
 - Remove food items from the cart.
 - View the total price of the cart.
