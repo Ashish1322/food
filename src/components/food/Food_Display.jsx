@@ -8,14 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 function Food_Display({ category }) {
-  const { foodList, hanadleAddTocart } = useContext(food_Delivery_contex);
+  const { foodList, hanadleAddTocart, decoreaesQuantity, increaseQuantity } =
+    useContext(food_Delivery_contex);
   const navigate = useNavigate();
 
   return (
     <div className="py-6">
       <h3 className="text-2xl font-bold">Popular Foods</h3>
       <div className="food-display-list">
-        {foodList.map((item) => {
+        {foodList.map((item, index) => {
           if (category === "All" || category === item.category)
             return (
               <div
@@ -29,11 +30,17 @@ function Food_Display({ category }) {
                 <img src={item.image} alt="" className="rounded-t-lg w-full " />
                 <div className="flex justify-end p-1">
                   <div className="flex p-1 bg-yellow-500 rounded-full ">
-                    <p className="text-xl font-bold text-red-700 rounded-full bg-yellow-300 px-[10px] mr-2">
+                    <p
+                      onClick={() => decoreaesQuantity(index)}
+                      className="text-xl font-bold text-red-700 rounded-full bg-yellow-300 px-[10px] mr-2"
+                    >
                       -
                     </p>
-                    <span className="">{}</span>
-                    <p className="text-xl font-bold text-red-700 rounded-full bg-yellow-300 px-2">
+                    <span className="">{item.quantity}</span>
+                    <p
+                      onClick={() => increaseQuantity(index)}
+                      className="text-xl font-bold text-red-700 rounded-full bg-yellow-300 px-2"
+                    >
                       +
                     </p>
                   </div>

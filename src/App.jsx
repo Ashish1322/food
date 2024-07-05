@@ -10,11 +10,11 @@ import Login from "./components/Login";
 import { createContext, useEffect, useState } from "react";
 import { food_list } from "./foodItems";
 import { menu_list } from "./foodItems";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 export const food_Delivery_contex = createContext(null);
 
 function App() {
-
   const [foodList, setFoodList] = useState(food_list);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
@@ -22,22 +22,34 @@ function App() {
   useEffect(() => {
     let sum = 0;
     cart.forEach((item) => {
-      sum += item.price;
+      sum += item.price * item.quantity;
     });
     setTotal(sum);
   }, [cart]);
 
-
-  function hanadleAddTocart(e, foodItem){
-    const  newCart = [...cart, foodItem]
-    setCart(newCart)
-    localStorage.setItem('cart', JSON.stringify(newCart));
+  function hanadleAddTocart(e, foodItem) {
+    const newCart = [...cart, foodItem];
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   }
 
- 
+  function increaseQuantity(index) {
+    let temp = [...foodList];
+    temp[index].quantity += 1;
+    setFoodList(temp);
+  }
+
+  function decoreaesQuantity(index) {
+    if (foodList[index].quantity > 0) {
+      let temp = [...foodList];
+      temp[index].quantity -= 1;
+      setFoodList(temp);
+    }
+  }
 
   return (
     <>
+      <ToastContainer />
       <BrowserRouter>
         <food_Delivery_contex.Provider
           value={{
@@ -49,7 +61,9 @@ function App() {
             foodList,
             setFoodList,
             total,
-            setTotal
+            setTotal,
+            increaseQuantity,
+            decoreaesQuantity,
           }}
         >
           <Header />
@@ -57,7 +71,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/review" element={<Review />} />
             <Route path="/cart" element={<Carts />} />
-            <Route path="/payment" element={<Payment/>}/>
+            <Route path="/payment" element={<Payment />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/login" element={<Login />} />
           </Routes>

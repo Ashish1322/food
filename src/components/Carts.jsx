@@ -72,7 +72,8 @@ function Carts() {
                       </p>
                       <p className="flex items-center font-bold pt-2">
                         <FaIndianRupeeSign className="text-sm" />
-                        {cartItem.price}
+                        {cartItem.price}X{cartItem.quantity} ={" "}
+                        {cartItem.price * cartItem.quantity}
                       </p>
                     </div>
                     <MdDeleteForever
